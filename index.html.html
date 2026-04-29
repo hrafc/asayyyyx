@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Astro Miner — Offline Space Game</title>
+  <meta name="description" content="Astro Miner is a polished offline HTML/CSS/JS PWA game. Collect crystals, dodge asteroids, upgrade your ship, and survive waves." />
+  <meta name="theme-color" content="#111827" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-512.png" />
+  <link rel="apple-touch-icon" href="icon-512.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="stars" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <section class="top-panel glass">
+      <div class="brand">
+        <div class="logo">🚀</div>
+        <div>
+          <h1>Astro Miner</h1>
+          <p>Offline crystal rush</p>
+        </div>
+      </div>
+
+      <div class="stats-grid" aria-label="Player stats">
+        <div class="stat-card">
+          <span>Score</span>
+          <strong id="scoreText">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Crystals</span>
+          <strong id="crystalText">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Wave</span>
+          <strong id="waveText">1</strong>
+        </div>
+        <div class="stat-card">
+          <span>Best</span>
+          <strong id="bestText">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-layout">
+      <aside class="side-panel glass left-panel">
+        <h2>Mission</h2>
+        <p id="missionText">Collect 20 crystals in one run.</p>
+        <div class="meter">
+          <div id="missionBar" class="meter-fill"></div>
+        </div>
+        <p class="hint">Move with <kbd>WASD</kbd> / arrows. On mobile, drag the joystick.</p>
+
+        <button id="startBtn" class="primary-btn">Start Run</button>
+        <button id="pauseBtn" class="ghost-btn">Pause</button>
+        <button id="shopBtn" class="ghost-btn">Upgrades</button>
+        <button id="resetBtn" class="danger-btn">Reset Save</button>
+      </aside>
+
+      <section class="canvas-wrap glass">
+        <canvas id="gameCanvas" width="960" height="600" aria-label="Astro Miner game canvas"></canvas>
+        <div id="centerMessage" class="center-message">
+          <h2>Astro Miner</h2>
+          <p>Collect glowing crystals, dodge asteroids, upgrade your ship, and beat your best score.</p>
+          <button id="bigStartBtn" class="primary-btn">Launch 🚀</button>
+        </div>
+
+        <div id="mobileControls" class="mobile-controls" aria-label="Mobile controls">
+          <div id="joystick" class="joystick">
+            <div id="stick" class="stick"></div>
+          </div>
+          <button id="boostBtn" class="boost-btn">BOOST</button>
+        </div>
+      </section>
+
+      <aside class="side-panel glass right-panel">
+        <h2>Ship</h2>
+        <div class="ship-card">
+          <div class="ship-preview">🛸</div>
+          <div>
+            <p id="shipName">Starter Comet</p>
+            <small id="shipInfo">Speed 1 • Magnet 1 • Shield 0</small>
+          </div>
+        </div>
+
+        <h2>Achievements</h2>
+        <div id="achievementList" class="achievement-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <dialog id="shopModal" class="modal glass">
+    <div class="modal-head">
+      <div>
+        <h2>Upgrade Bay</h2>
+        <p>Spend crystals to survive longer.</p>
+      </div>
+      <button id="closeShopBtn" class="icon-btn" aria-label="Close upgrades">✕</button>
+    </div>
+    <div id="upgradeGrid" class="upgrade-grid"></div>
+  </dialog>
+
+  <dialog id="confirmModal" class="modal glass small-modal">
+    <h2>Reset save?</h2>
+    <p>This deletes crystals, upgrades, achievements, and best score.</p>
+    <div class="modal-actions">
+      <button id="cancelResetBtn" class="ghost-btn">Cancel</button>
+      <button id="confirmResetBtn" class="danger-btn">Yes, reset</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

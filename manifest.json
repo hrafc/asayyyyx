@@ -1,0 +1,21 @@
+{
+  "name": "Astro Miner",
+  "short_name": "AstroMiner",
+  "description": "An offline HTML/CSS/JS space mining game with upgrades, missions, and PWA support.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070814",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "lang": "en"
+}
